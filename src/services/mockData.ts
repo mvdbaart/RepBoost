@@ -1,0 +1,96 @@
+export const mockReviews = [
+  {
+    id: "1",
+    customer_name: "Sarah Johnson",
+    customer_avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah",
+    platform: "google",
+    rating: 5,
+    date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+    content:
+      "Absolutely love this business! The customer service was exceptional and the product quality exceeded my expectations. Will definitely be returning!",
+    responded: false,
+  },
+  {
+    id: "2",
+    customer_name: "Michael Chen",
+    customer_avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=michael",
+    platform: "yelp",
+    rating: 4,
+    date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+    content:
+      "Great experience overall. The staff was friendly and helpful. Only giving 4 stars because the wait time was a bit longer than expected.",
+    responded: false,
+  },
+  {
+    id: "3",
+    customer_name: "Jessica Williams",
+    customer_avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=jessica",
+    platform: "facebook",
+    rating: 3,
+    date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+    content:
+      "Decent service but room for improvement. The product was good but I had some issues with delivery.",
+    responded: false,
+  },
+  {
+    id: "4",
+    customer_name: "David Rodriguez",
+    customer_avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=david",
+    platform: "google",
+    rating: 5,
+    date: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+    content:
+      "Top-notch service from start to finish. The team went above and beyond to ensure my satisfaction. Highly recommend!",
+    responded: false,
+  },
+  {
+    id: "5",
+    customer_name: "Emily Thompson",
+    customer_avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=emily",
+    platform: "yelp",
+    rating: 2,
+    date: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
+    content:
+      "Disappointing experience. The product didn't meet my expectations and customer service was slow to respond to my concerns.",
+    responded: false,
+  },
+];
+
+export const mockCampaigns = [
+  {
+    id: "1",
+    name: "Post-Purchase Follow-up",
+    status: "active",
+    channel: "email",
+    sent_count: 245,
+    opened_count: 189,
+    responded_count: 42,
+    start_date: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+    created_at: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+    updated_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: "2",
+    name: "Service Feedback",
+    status: "scheduled",
+    channel: "sms",
+    sent_count: 0,
+    opened_count: 0,
+    responded_count: 0,
+    start_date: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString(),
+    created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+    updated_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: "3",
+    name: "Loyalty Program",
+    status: "paused",
+    channel: "whatsapp",
+    sent_count: 120,
+    opened_count: 98,
+    responded_count: 24,
+    start_date: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+    created_at: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+    updated_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+];
