@@ -2,22 +2,16 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Mail, MessageSquare, Calendar, Check, ChevronRight } from "lucide-react";
 
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../ui/card";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "../ui/tabs";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../ui/select";
-import { Switch } from "../ui/switch";
-import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from "../ui/form";
+import * as Card from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from "@/components/ui/form";
 
-interface CampaignCreatorProps {
-  onSave?: (data: CampaignData) => void;
-  onCancel?: () => void;
-  initialData?: CampaignData;
-}
-
-interface CampaignData {
+type CampaignData = {
   name: string;
   channel: string;
   template: string;
@@ -27,13 +21,19 @@ interface CampaignData {
     recurring: boolean;
   };
   audience: string;
+};
+
+interface CampaignCreatorProps {
+  onSave?: (data: CampaignData) => void;
+  onCancel?: () => void;
+  initialData?: CampaignData;
 }
 
-const CampaignCreator: React.FC<CampaignCreatorProps> = ({ 
+const CampaignCreator = ({ 
   onSave = () => {}, 
   onCancel = () => {}, 
   initialData 
-}) => {
+}: CampaignCreatorProps) => {
   const [currentStep, setCurrentStep] = useState<string>("channel");
   const [selectedChannel, setSelectedChannel] = useState<string>(initialData?.channel || "email");
   
@@ -69,14 +69,14 @@ const CampaignCreator: React.FC<CampaignCreatorProps> = ({
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto bg-white">
-      <CardHeader>
-        <CardTitle>Create Review Collection Campaign</CardTitle>
-        <CardDescription>
+    <Card.Card className="w-full max-w-4xl mx-auto bg-white">
+      <Card.CardHeader>
+        <Card.CardTitle>Create Review Collection Campaign</Card.CardTitle>
+        <Card.CardDescription>
           Set up a campaign to automatically request reviews from your customers
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+        </Card.CardDescription>
+      </Card.CardHeader>
+      <Card.CardContent>
         <Tabs value={currentStep} onValueChange={setCurrentStep} className="w-full">
           <TabsList className="grid grid-cols-4 mb-8">
             <TabsTrigger value="channel" disabled={currentStep !== "channel" && currentStep !== "review"}>Channel</TabsTrigger>
@@ -104,14 +104,14 @@ const CampaignCreator: React.FC<CampaignCreatorProps> = ({
                 />
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Card 
+                  <Card.Card 
                     className={`cursor-pointer border-2 ${selectedChannel === "email" ? "border-primary" : "border-border"}`}
                     onClick={() => {
                       setSelectedChannel("email");
                       form.setValue("channel", "email");
                     }}
                   >
-                    <CardContent className="p-6 flex flex-col items-center justify-center text-center">
+                    <Card.CardContent className="p-6 flex flex-col items-center justify-center text-center">
                       <Mail className="h-10 w-10 mb-4 text-primary" />
                       <h3 className="font-medium">Email</h3>
                       <p className="text-sm text-muted-foreground mt-2">Send review requests via email</p>
@@ -120,17 +120,17 @@ const CampaignCreator: React.FC<CampaignCreatorProps> = ({
                           <Check className="h-4 w-4" />
                         </div>
                       )}
-                    </CardContent>
-                  </Card>
+                    </Card.CardContent>
+                  </Card.Card>
                   
-                  <Card 
+                  <Card.Card 
                     className={`cursor-pointer border-2 ${selectedChannel === "sms" ? "border-primary" : "border-border"}`}
                     onClick={() => {
                       setSelectedChannel("sms");
                       form.setValue("channel", "sms");
                     }}
                   >
-                    <CardContent className="p-6 flex flex-col items-center justify-center text-center">
+                    <Card.CardContent className="p-6 flex flex-col items-center justify-center text-center">
                       <MessageSquare className="h-10 w-10 mb-4 text-primary" />
                       <h3 className="font-medium">SMS</h3>
                       <p className="text-sm text-muted-foreground mt-2">Send review requests via text message</p>
@@ -139,17 +139,17 @@ const CampaignCreator: React.FC<CampaignCreatorProps> = ({
                           <Check className="h-4 w-4" />
                         </div>
                       )}
-                    </CardContent>
-                  </Card>
+                    </Card.CardContent>
+                  </Card.Card>
                   
-                  <Card 
+                  <Card.Card 
                     className={`cursor-pointer border-2 ${selectedChannel === "whatsapp" ? "border-primary" : "border-border"}`}
                     onClick={() => {
                       setSelectedChannel("whatsapp");
                       form.setValue("channel", "whatsapp");
                     }}
                   >
-                    <CardContent className="p-6 flex flex-col items-center justify-center text-center">
+                    <Card.CardContent className="p-6 flex flex-col items-center justify-center text-center">
                       <MessageSquare className="h-10 w-10 mb-4 text-primary" />
                       <h3 className="font-medium">WhatsApp</h3>
                       <p className="text-sm text-muted-foreground mt-2">Send review requests via WhatsApp</p>
@@ -158,8 +158,8 @@ const CampaignCreator: React.FC<CampaignCreatorProps> = ({
                           <Check className="h-4 w-4" />
                         </div>
                       )}
-                    </CardContent>
-                  </Card>
+                    </Card.CardContent>
+                  </Card.Card>
                 </div>
                 
                 <FormField
@@ -293,12 +293,12 @@ Thank you!
             </TabsContent>
 
             <TabsContent value="review" className="space-y-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Campaign Summary</CardTitle>
-                  <CardDescription>Review your campaign details before launching</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
+              <Card.Card>
+                <Card.CardHeader>
+                  <Card.CardTitle>Campaign Summary</Card.CardTitle>
+                  <Card.CardDescription>Review your campaign details before launching</Card.CardDescription>
+                </Card.CardHeader>
+                <Card.CardContent className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <h3 className="text-sm font-medium text-muted-foreground">Campaign Name</h3>
@@ -327,13 +327,13 @@ Thank you!
                       {form.watch("template")}
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </Card.CardContent>
+              </Card.Card>
             </TabsContent>
           </Form>
         </Tabs>
-      </CardContent>
-      <CardFooter className="flex justify-between">
+      </Card.CardContent>
+      <Card.CardFooter className="flex justify-between">
         {currentStep !== "channel" ? (
           <Button variant="outline" onClick={handleBack}>
             Back
@@ -348,8 +348,8 @@ Thank you!
           {currentStep === "review" ? "Launch Campaign" : "Next"}
           {currentStep !== "review" && <ChevronRight className="ml-2 h-4 w-4" />}
         </Button>
-      </CardFooter>
-    </Card>
+      </Card.CardFooter>
+    </Card.Card>
   );
 };
 
