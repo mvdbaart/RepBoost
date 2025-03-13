@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useMockAuth } from "@/components/auth/MockAuthProvider";
 import {
   BarChart3,
   MessageSquare,
@@ -11,6 +12,8 @@ import {
   LayoutDashboard,
   LogOut,
   HelpCircle,
+  User,
+  Users,
 } from "lucide-react";
 import {
   Tooltip,
@@ -30,6 +33,7 @@ interface NavItem {
   icon: React.ReactNode;
   path: string;
   description: string;
+  adminOnly?: boolean;
 }
 
 const Sidebar = ({
@@ -37,6 +41,8 @@ const Sidebar = ({
   onNavigate = () => {},
   activePath = "/dashboard",
 }: SidebarProps) => {
+  const { user } = useMockAuth();
+  const isAdmin = user?.app_metadata?.is_admin === true;
   const navItems: NavItem[] = [
     {
       title: "Dashboard",
@@ -75,10 +81,23 @@ const Sidebar = ({
       description: "Customize your review collection",
     },
     {
-      title: "Settings",
+      title: "Profile",
+      icon: <User className="h-5 w-5" />,
+      path: "/settings?tab=profile",
+      description: "Manage your profile information",
+    },
+    {
+      title: "Account Settings",
       icon: <Settings className="h-5 w-5" />,
-      path: "/settings",
-      description: "Manage account and platform settings",
+      path: "/settings?tab=security",
+      description: "Manage your security settings",
+    },
+    {
+      title: "User Management",
+      icon: <User className="h-5 w-5" />,
+      path: "/admin/users",
+      description: "Manage users and permissions",
+      adminOnly: true,
     },
   ];
 
@@ -94,36 +113,51 @@ const Sidebar = ({
           <div className="h-8 w-8 rounded-md bg-primary flex items-center justify-center">
             <Star className="h-5 w-5 text-white" />
           </div>
-          <span className="font-semibold text-xl">ReviewBoost</span>
+          <span className="font-semibold text-xl">RepBooster</span>
         </div>
       </div>
 
       <div className="flex-1 overflow-auto py-6 px-4">
         <nav className="flex flex-col gap-2">
-          {navItems.map((item) => (
-            <TooltipProvider key={item.path}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant={activePath === item.path ? "secondary" : "ghost"}
-                    className={cn(
-                      "w-full justify-start gap-3 px-3 py-2 h-auto",
-                      activePath === item.path
-                        ? "bg-secondary font-medium"
-                        : "font-normal",
-                    )}
-                    onClick={() => onNavigate(item.path)}
-                  >
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent side="right">
-                  <p>{item.description}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          ))}
+          {navItems
+            .filter((item) => !item.adminOnly || isAdmin)
+            .map((item) => (
+              <TooltipProvider key={item.path}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant={activePath === item.path ? "secondary" : "ghost"}
+                      className={cn(
+                        "w-full justify-start gap-3 px-3 py-2 h-auto",
+                        activePath === item.path
+                          ? "bg-secondary font-medium"
+                          : "font-normal",
+                      )}
+                      onClick={() => {
+                        if (item.path.includes("?")) {
+                          // Handle paths with query parameters
+                          window.location.href = item.path;
+                        } else if (
+                          item.path === "/reviews" ||
+                          item.path === "/admin/users"
+                        ) {
+                          // Direct navigation for reviews page and admin pages
+                          window.location.href = item.path;
+                        } else {
+                          onNavigate(item.path);
+                        }
+                      }}
+                    >
+                      {item.icon}
+                      <span>{item.title}</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">
+                    <p>{item.description}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            ))}
         </nav>
       </div>
 

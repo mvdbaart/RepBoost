@@ -24,7 +24,7 @@ export async function getProfile() {
   return {
     id: mockUser.id,
     full_name: mockUser.user_metadata?.name || "Admin User",
-    company_name: "ReviewBoost",
+    company_name: "RepBooster",
     avatar_url: `https://api.dicebear.com/7.x/avataaars/svg?seed=${mockUser.id}`,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -58,7 +58,7 @@ export async function updateProfile(
     ...profile,
     full_name:
       profile.full_name || mockUser.user_metadata?.name || "Admin User",
-    company_name: profile.company_name || "ReviewBoost",
+    company_name: profile.company_name || "RepBooster",
     avatar_url:
       profile.avatar_url ||
       `https://api.dicebear.com/7.x/avataaars/svg?seed=${mockUser.id}`,

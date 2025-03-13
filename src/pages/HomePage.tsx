@@ -17,7 +17,7 @@ const HomePage = () => {
               <Star className="h-6 w-6 text-white" />
             </div>
             <span className="text-white text-2xl font-bold">
-              ReviewBoost<span className="text-cyan-400">.io</span>
+              RepBooster<span className="text-cyan-400">.io</span>
             </span>
           </div>
           <div className="flex gap-2">
@@ -60,7 +60,7 @@ const HomePage = () => {
           <p className="text-white/90 text-lg">
             Reviews are your online word-of-mouth advertising. Are you getting
             the most out of them? Or are you stuck with scattered reviews here
-            and there? ReviewBoost helps you optimize your online reputation to
+            and there? RepBooster helps you optimize your online reputation to
             maximize profits.
           </p>
           <Button
@@ -68,7 +68,7 @@ const HomePage = () => {
             className="bg-cyan-400 hover:bg-cyan-500 text-white px-8 py-6 text-lg"
             onClick={() => navigate("/signup")}
           >
-            Try ReviewBoost
+            Try RepBooster
           </Button>
         </div>
         <div className="md:w-1/2">
@@ -236,7 +236,7 @@ const HomePage = () => {
             Ready to boost your online reputation?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of businesses that use ReviewBoost to manage and
+            Join thousands of businesses that use RepBooster to manage and
             leverage their online reviews.
           </p>
           <div className="flex gap-4 justify-center">
@@ -269,7 +269,7 @@ const HomePage = () => {
                   <Star className="h-5 w-5 text-white" />
                 </div>
                 <span className="text-white text-xl font-bold">
-                  ReviewBoost<span className="text-cyan-400">.io</span>
+                  RepBooster<span className="text-cyan-400">.io</span>
                 </span>
               </div>
               <p className="text-gray-400">
@@ -359,7 +359,7 @@ const HomePage = () => {
 
           <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500">
-              © 2023 ReviewBoost. All rights reserved.
+              © 2023 RepBooster. All rights reserved.
             </p>
             <div className="flex gap-4 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-cyan-400">

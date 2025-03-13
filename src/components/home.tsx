@@ -2,14 +2,6 @@ import React, { useState } from "react";
 import DashboardLayout from "./dashboard/DashboardLayout";
 import OverviewSection from "./dashboard/OverviewSection";
 import ReviewHub from "./reviews/ReviewHub";
-import SentimentAnalysis from "./analytics/SentimentAnalysis";
-import ReviewTrendsChart from "./analytics/ReviewTrendsChart";
-import BusinessImpactMetrics from "./analytics/BusinessImpactMetrics";
-import ReportExport from "./analytics/ReportExport";
-import AnalyticsDashboard from "./analytics/AnalyticsDashboard";
-import CampaignManager from "./campaigns/CampaignManager";
-import ActiveCampaigns from "./campaigns/ActiveCampaigns";
-import CampaignCreator from "./campaigns/CampaignCreator";
 
 const Home = () => {
   const [activePath, setActivePath] = useState("/dashboard");
@@ -24,11 +16,9 @@ const Home = () => {
       case "/dashboard":
         return <OverviewSection />;
       case "/reviews":
-        return <ReviewHub />;
-      case "/analytics":
-        return <AnalyticsDashboard />;
-      case "/campaigns":
-        return <CampaignManager />;
+        // We'll navigate to a dedicated page for reviews instead of rendering it here
+        window.location.href = "/reviews";
+        return null;
       default:
         return (
           <div className="flex items-center justify-center h-full bg-gray-50">

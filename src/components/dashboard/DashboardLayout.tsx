@@ -85,7 +85,7 @@ const DashboardLayout = ({
               <div className="h-8 w-8 rounded-md bg-primary flex items-center justify-center">
                 <span className="text-white font-bold">R</span>
               </div>
-              <span className="font-semibold">ReviewBoost</span>
+              <span className="font-semibold">RepBooster</span>
             </div>
           </div>
 
@@ -158,15 +158,19 @@ const DashboardLayout = ({
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   className="cursor-pointer"
-                  onClick={() => onNavigate("/profile")}
+                  onClick={() =>
+                    (window.location.href = "/settings?tab=profile")
+                  }
                 >
                   Profile
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   className="cursor-pointer"
-                  onClick={() => onNavigate("/settings")}
+                  onClick={() =>
+                    (window.location.href = "/settings?tab=security")
+                  }
                 >
-                  Settings
+                  Account Settings
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem

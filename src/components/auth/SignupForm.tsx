@@ -31,9 +31,7 @@ const SignupForm = () => {
     try {
       const { error } = await signUp(email, password);
       if (error) throw error;
-      navigate("/login", {
-        state: { message: "Please check your email to confirm your account" },
-      });
+      navigate("/dashboard");
     } catch (err: any) {
       setError(err.message || "Failed to sign up");
     } finally {
